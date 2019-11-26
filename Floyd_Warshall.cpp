@@ -1,10 +1,10 @@
 //Coding reference: https://www.tutorialspoint.com/Floyd-Warshall-Algorithm
-//COMP3711 Fall 2019 Homework 4 Q1
 
 #include<iostream>
 #include<iomanip>
 #define NODE 6
 #define INF 999
+#define INF_threshold 500
 #define matwidth 7
 using namespace std;
 
@@ -21,7 +21,9 @@ int costMat[NODE][NODE] = {
 void printMat(int a[NODE][NODE]){
     for(int i = 0; i<NODE; i++) {
       for(int j = 0; j<NODE; j++)
-         a[i][j]==INF?cout<<setw(matwidth)<<"INF":cout << setw(matwidth) << a[i][j];
+         a[i][j]>=INF_threshold?
+            cout<<setw(matwidth)<<"INF":
+            cout << setw(matwidth) << a[i][j];
       cout << endl;
    }
 } 
@@ -41,9 +43,9 @@ void floydWarshal() {
             if(cost[i][k]+cost[k][j] < cost[i][j])
                cost[i][j] = cost[i][k]+cost[k][j];
       }
-      cout<<k<<endl;
+      cout<<"D^("<<k+1<<")"<<endl;
       printMat(cost);
-        cout<<endl;
+        cout<<endl<<endl<<endl;
    }
    
    
