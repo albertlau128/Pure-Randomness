@@ -19,14 +19,30 @@ int costMat[NODE][NODE] = {
 };
 
 void printMat(int a[NODE][NODE]){
+    cout<<endl<<"\\begin{pmatrix}"<<endl;;
     for(int i = 0; i<NODE; i++) {
-      for(int j = 0; j<NODE; j++)
+      for(int j = 0; j<NODE; j++){
+         /*a[i][j]>=INF_threshold?
+            cout<<setw(matwidth)<<"INF":
+            cout << setw(matwidth) << a[i][j];*/
+            a[i][j]>=INF_threshold?
+             cout<<"$\\infty$":
+             cout<<a[i][j];
+            if(j+1!=NODE)cout<<"&";
+      } 
+      cout<<"\\\\";
+      cout << endl;
+   }
+   cout<<"\\end{pmatrix}$\\newline\\newline"<<endl<<endl;
+   
+   for(int i = 0; i<NODE; i++) {
+      for(int j = 0; j<NODE; j++){
          a[i][j]>=INF_threshold?
             cout<<setw(matwidth)<<"INF":
             cout << setw(matwidth) << a[i][j];
-      cout << endl;
-   }
-} 
+      }cout<<endl;
+    } 
+}
 
 void floydWarshal() {
     cout<<"Original Matrix\n";
